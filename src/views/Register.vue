@@ -9,7 +9,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="inputLastname">Nom</label>
-                <input type="text" class="form-control" id="inputEmail" v-model="user.lastname">
+                <input type="text" class="form-control" id="inputLastname" v-model="user.lastname">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="inputEmail">Email</label>

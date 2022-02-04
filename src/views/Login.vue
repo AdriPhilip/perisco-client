@@ -28,6 +28,8 @@ export default {
     return {
       user: {
         email: "",
+        firstname: "",
+        lastname: "",
         password: "",
         errorMsg: ""
       },
@@ -43,9 +45,20 @@ export default {
     async getSession() {
       UserService.getSession({
         "email": this.user.email,
-        "password": this.user.password
+        "password": this.user.password,
       }).then((data) => {
-        console.log(data)
+        if (data["loggedin"] == true){
+          sessionStorage.setItem("user_id", data["id"]);
+          sessionStorage.setItem("email", data["email"]);
+          sessionStorage.setItem("firstname", data["firstname"]);
+          sessionStorage.setItem("lastname", data["lastname"]);
+          sessionStorage.setItem("loggedin", data["loggedin"]);
+          this.$router.push('/')
+          window.location.reload()
+        }
+        else {
+          window.location.reload()
+        }
       });
     },
     /*if (this.$refs.formLogin.validate()) {

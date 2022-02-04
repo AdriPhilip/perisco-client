@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>PERISCO</h1>
+    <p>Bonjour {{this.user.firstname}} {{this.user.lastname}}</p>
   </div>
 </template>
 
@@ -9,7 +10,25 @@
 
 export default {
   name: 'Home',
-  components: {
-  }
+  data: function() {
+    return {
+      user: {
+        email: "",
+        firstname: "",
+        lastname: "",
+      },
+    }
+  },
+  created() {
+    if (sessionStorage.getItem('email')) {
+      try {
+        this.user.email = sessionStorage.getItem('email');
+        this.user.firstname = sessionStorage.getItem('firstname');
+        this.user.lastname = sessionStorage.getItem('lastname');
+      } catch(e) {
+        console.log(e)
+      }
+    }
+  },
 }
 </script>

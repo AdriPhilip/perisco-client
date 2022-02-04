@@ -38,5 +38,5 @@ export default {
             method: 'DELETE',
         }).then((response) => response.json());
         return res;
-    }
+    },
 };
