@@ -1,6 +1,7 @@
 export default {
     async createChild(child) {
-        const res = fetch(`${process.env.VUE_APP_PERISCO_API}/child`,
+        console.log("create child")
+        const res = fetch(`${process.env.VUE_APP_PERISCO_API}/add_child`,
         {
             method: 'POST',
             headers: {
@@ -17,4 +18,11 @@ export default {
         }).then((response) => response.json());
         return res;
     },
+    deleteChild(child_id) {
+        const res = fetch(`${process.env.VUE_APP_PERISCO_API}/del_child/${child_id}`,
+        {
+            method: 'DELETE',
+        }).then((response) => response.json());
+        return res;
+    }
 }

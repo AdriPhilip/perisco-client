@@ -1,8 +1,14 @@
 <template>
   <div class="child">
-    <ul id="childList">
-      <li></li>
-    </ul> 
+    <div id="childrenList" class="list-group">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="child in this.children" :key="child.id">{{child.firstname}} {{child.lastname}}
+          <button class="btn btn-danger" v-on:click.prevent="deleteChild(child.child_id)">
+            supprimer
+          </button>
+        </li>
+      </ul> 
+    </div>
     <div id="childForm">
       <h1>Ajouter un enfant</h1>
         <form>
@@ -44,20 +50,31 @@ export default {
     async getChildren() {
       ChildService.getChildrenByAccountId(this.child.user_id).then(
         (data) => {
-          console.log(data)
+          this.children = data
+          console.log(this.children)
         }
       );
     },
     // sauvegarder un enfant
     saveChild() {
-      this.postOrUpdateChild();
+      this.postChild();
     },
-    async postOrUpdateChild() {
+    async postChild() {
+      // Rechargement de la page
+      window.location.href =
+        window.rootUrl + `/enfant`;
+
       ChildService.createChild(this.child).then((data) => {
-        console.log(data)
         this.child.id = data.id;
         this.idChild = data.id;
       });
+    },
+    async deleteChild(child_id) {
+      // Rechargement de la page
+      window.location.href =
+        window.rootUrl + `/enfant`;
+
+      ChildService.deleteChild(child_id);
     },
   }
 }
@@ -67,14 +84,20 @@ export default {
 
 .child{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: row;
 }
 
-#childForm {
+#childForm, #childrenList {
   width:20%;
   background-color: skyblue;
   padding: 5px;
   border-radius: 5px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
 }
 
 </style>
