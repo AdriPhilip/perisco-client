@@ -19,7 +19,7 @@
             <div v-if="this.isLogged === true" class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/enfant">Enfant(s)</router-link>
+                  <router-link class="nav-link" to="/enfants">Enfant(s)</router-link>
                 </li>
                 <li class="nav-item">
                   <router-link class="nav-link" to="/logout">Déconnexion</router-link>

@@ -37,10 +37,17 @@ const routes = [
     }
   },
   {
-    path: '/enfant',
+    path: '/enfant/:idChild',
     name: 'Enfant',
     component: function () {
       return import('../views/Enfant.vue')
+    }
+  },
+  {
+    path: '/enfants',
+    name: 'Enfants',
+    component: function () {
+      return import('../views/Enfants.vue')
     }
   }
 ]

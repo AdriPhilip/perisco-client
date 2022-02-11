@@ -12,7 +12,14 @@ export default {
         return res;
     },
     getChildrenByAccountId(user_id) {
-        const res = fetch(`${process.env.VUE_APP_PERISCO_API}/child/${user_id}`,
+        const res = fetch(`${process.env.VUE_APP_PERISCO_API}/children/${user_id}`,
+        {
+            method: 'GET',
+        }).then((response) => response.json());
+        return res;
+    },
+    getChildById(child_id) {
+        const res = fetch(`${process.env.VUE_APP_PERISCO_API}/child/${child_id}`,
         {
             method: 'GET',
         }).then((response) => response.json());
